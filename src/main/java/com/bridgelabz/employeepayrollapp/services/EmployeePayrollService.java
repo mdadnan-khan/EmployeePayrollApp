@@ -1,6 +1,5 @@
 package com.bridgelabz.employeepayrollapp.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,26 +12,23 @@ import com.bridgelabz.employeepayrollapp.respository.EmployeePayrollRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Service
 @Slf4j
 public class EmployeePayrollService implements IEmployeePayrollService {
-	
+
 	@Autowired
 	private EmployeePayrollRepository employeeRepository;
-	
+
 	public List<EmployeePayrollData> getEmployeePayrollData() {
 		return employeeRepository.findAll();
 	}
-	
+
 	@Override
 	public EmployeePayrollData getEmployeePayrollDataById(int empId) {
-		return employeeRepository
-				.findById(empId)
-				.orElseThrow(() -> new EmployeePayrollException("Employee with employee id "+
-				empId + " does not exist..."));
+		return employeeRepository.findById(empId).orElseThrow(
+				() -> new EmployeePayrollException("Employee with employee id " + empId + " does not exist..."));
 	}
-	
+
 	@Override
 	public EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
 		EmployeePayrollData employeePayrollData = null;
@@ -54,8 +50,9 @@ public class EmployeePayrollService implements IEmployeePayrollService {
 		employeeRepository.delete(empData);
 	}
 
+	
 	@Override
 	public List<EmployeePayrollData> getEmployeesByDepartment(String department) {
-		return employeeRepository.findEmployeesByDepartment(department);
+		return null;
 	}
 }
